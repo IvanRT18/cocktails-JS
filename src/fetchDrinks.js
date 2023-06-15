@@ -1,8 +1,13 @@
+import { showLoading } from "./toggleLoading.js";
+
 const fetchDrinks = async (url) => {
+  showLoading();
   try {
     const response = await fetch(url);
     const data = await response.json();
-    sortArray(data.drinks);
+    if (data.drinks) {
+      sortArray(data.drinks);
+    }
     return data;
   } catch (error) {
     throw new Error(`There was an error: ${error}`);
